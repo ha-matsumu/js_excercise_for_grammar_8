@@ -5,6 +5,7 @@
 //     2. 買い物
 //     3. 散歩
 // ここに変数「todos」を用意する
+let todos = ["掃除", "買い物", "散歩"];
 
 
 // ここに、Todoリストの機能を入力された文字によって使い分けるための文字列を配列で所持する
@@ -15,9 +16,11 @@
 //     3. 削除
 //     4. 終了
 // ここに変数「commands」を用意する
+let conmmands = ["確認", "追加", "削除", "終了"];
 
 
 // ここに、promptで入力したものを保持しておくための変数「input」を用意する
+let input;
 
 
 // ここに「終了」と入力されたらループを終了するwhileループを作成する
@@ -29,10 +32,23 @@
 //     3. 「削除」と入力された時: deleteTodo関数を実行する
 //     4. 「終了」と入力された時: Consoleに'終了します'と表示して、Whileループを終了する
 //   - 「確認」「追加」「削除」「終了」以外がinputに代入されたら「「確認,追加,削除,終了」以外は入力できません」とConsoleに表示する
-
+while(input !== "終了") {
+    input = prompt("「確認,追加,削除,終了」の4つのいずれかを入力してください ");
+    if(input === "確認") {
+        showTodos();
+    } else if(input === "追加") {
+        createTodo();
+    } else if(input === "削除") {
+        deleteTodo();
+    } else if(input === "終了") {
+        console.log("終了します");
+    } else {
+        console.log("「確認,追加,削除,終了」以外は入力できません");
+    }
+}
 
 // ここでWhileループを抜けた後もタスク一覧を表示する(最終的なタスク一覧を確認するため)
-
+showTodos();
 
 /**
  * 「確認」が入力されたときに実行される関数「showTodos関数」を用意する
@@ -58,6 +74,14 @@
  *   タスクなし
  */
 // ここにshowTodos関数を作る
+function showTodos() {
+    console.log("========================");
+    console.log("現在持っているのタスク一覧");
+    console.log("========================");
+    todos.forEach((todo, index) => {
+        console.log(index + " : " + todo);
+    });
+}
 
 
 /**
@@ -71,6 +95,16 @@
  *      3. showTodos関数を実行して、現在保持しているタスク一覧を表示する
  */
 // ここにcreateTodo関数を作る
+function createTodo() {
+    let inputTodo = prompt("タスクを入力してください");
+    if(inputTodo === "") {
+        alert("何も入力されていないためスキップします");
+    } else {
+        todos.push(inputTodo);
+        alert("新しいタスクを追加しました。");
+        showTodos();
+    }
+}
 
 /**
  * 「削除」が入力されたときに実行される関数
@@ -93,4 +127,16 @@
  *      3. showTodos関数を実行して、現在保持しているタスク一覧を表示する
  */
 // ここにdeleteTodo関数を作る
+function deleteTodo() {
+    let inputIndex = prompt("削除するタスクの番号を指定してください");
+    let deletedTodos;
+    inputIndex = parseInt(inputIndex);
+    if(inputIndex < 0 || inputIndex > todos.length || isNaN(inputIndex)) {
+        alert("不正な値のためスキップします");
+    } else {
+        deletedTodos = todos.splice(inputIndex, 1);
+        alert(deletedTodos[0] + "を削除しました");
+        showTodos();
+    }
+}
 
