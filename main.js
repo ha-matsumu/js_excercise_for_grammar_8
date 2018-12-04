@@ -5,7 +5,7 @@
 //     2. 買い物
 //     3. 散歩
 // ここに変数「todos」を用意する
-let todos = ["掃除", "買い物", "散歩"];
+const todos = ["掃除", "買い物", "散歩"];
 
 
 // ここに、Todoリストの機能を入力された文字によって使い分けるための文字列を配列で所持する
@@ -16,7 +16,7 @@ let todos = ["掃除", "買い物", "散歩"];
 //     3. 削除
 //     4. 終了
 // ここに変数「commands」を用意する
-let conmmands = ["確認", "追加", "削除", "終了"];
+const conmmands = ["確認", "追加", "削除", "終了"];
 
 
 // ここに、promptで入力したものを保持しておくための変数「input」を用意する
@@ -75,12 +75,19 @@ showTodos();
  */
 // ここにshowTodos関数を作る
 function showTodos() {
-    console.log("========================");
-    console.log("現在持っているのタスク一覧");
-    console.log("========================");
-    todos.forEach((todo, index) => {
-        console.log(index + " : " + todo);
-    });
+    if(todos.length !== 0){
+        console.log("========================");
+        console.log("現在持っているのタスク一覧");
+        console.log("========================");
+        todos.forEach((todo, index) => {
+            console.log(index + " : " + todo);
+        });
+    } else {
+        console.log("========================");
+        console.log("現在持っているのタスク一覧");
+        console.log("========================");
+        console.log("タスク無し");
+    }
 }
 
 
@@ -96,8 +103,8 @@ function showTodos() {
  */
 // ここにcreateTodo関数を作る
 function createTodo() {
-    let inputTodo = prompt("タスクを入力してください");
-    if(inputTodo === "") {
+    const inputTodo = prompt("タスクを入力してください");
+    if(!(inputTodo) {
         alert("何も入力されていないためスキップします");
     } else {
         todos.push(inputTodo);
@@ -128,13 +135,12 @@ function createTodo() {
  */
 // ここにdeleteTodo関数を作る
 function deleteTodo() {
-    let inputIndex = prompt("削除するタスクの番号を指定してください");
-    let deletedTodos;
-    inputIndex = parseInt(inputIndex);
+    const inputIndex = prompt("削除するタスクの番号を指定してください");
+    const parsedIndex = parseInt(inputIndex, 10);
     if(inputIndex < 0 || inputIndex > todos.length || isNaN(inputIndex)) {
         alert("不正な値のためスキップします");
     } else {
-        deletedTodos = todos.splice(inputIndex, 1);
+        const deletedTodos = todos.splice(inputIndex, 1);
         alert(deletedTodos[0] + "を削除しました");
         showTodos();
     }
