@@ -104,7 +104,7 @@ function showTodos() {
 // ここにcreateTodo関数を作る
 function createTodo() {
     const inputTodo = prompt("タスクを入力してください");
-    if(!(inputTodo) {
+    if(!(inputTodo)) {
         alert("何も入力されていないためスキップします");
     } else {
         todos.push(inputTodo);
