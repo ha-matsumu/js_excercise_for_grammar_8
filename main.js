@@ -75,7 +75,7 @@ showTodos();
  */
 // ここにshowTodos関数を作る
 function showTodos() {
-    if(todos.length !== 0){
+    if(todos.length > 0){
         console.log("========================");
         console.log("現在持っているのタスク一覧");
         console.log("========================");
@@ -137,7 +137,7 @@ function createTodo() {
 function deleteTodo() {
     const inputIndex = prompt("削除するタスクの番号を指定してください");
     const parsedIndex = parseInt(inputIndex, 10);
-    if(inputIndex < 0 || inputIndex > todos.length || isNaN(inputIndex)) {
+    if(inputIndex < 0 || inputIndex >= todos.length || isNaN(inputIndex)) {
         alert("不正な値のためスキップします");
     } else {
         const deletedTodos = todos.splice(inputIndex, 1);
